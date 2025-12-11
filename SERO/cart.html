@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="old-money">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - SERØ | Elevating Everyday Fashion</title>
+    <style>
+        /* ================= CSS RESET ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* ================= VARIABLES ================= */
+        :root {
+            --bg-primary: #f8f7f2;
+            --bg-secondary: #f0eee4;
+            --text-primary: #2c2c2c;
+            --text-secondary: #5a5a5a;
+            --accent: #8b7355;
+            --accent-light: #a89176;
+            --border: #d4d0c5;
+            --hero-overlay: rgba(248, 247, 242, 0.1);
+            --button-bg: #8b7355;
+            --button-text: #ffffff;
+            --hero-image: url('https://plus.unsplash.com/premium_photo-1727895532114-540181abb36f?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        [data-theme="goth"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent: #39ff14;
+            --accent-light: #6aff4d;
+            --border: #333333;
+            --hero-overlay: rgba(10, 10, 10, 0.1);
+            --button-bg: #39ff14;
+            --button-text: #000000;
+            --hero-image: url('https://images.unsplash.com/photo-1644501988161-4a3175a1bb59?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        [data-theme="cottagecore"] {
+            --bg-primary: #fdf5f5;
+            --bg-secondary: #f9ecec;
+            --text-primary: #5a4a4a;
+            --text-secondary: #8a7a7a;
+            --accent: #e8b4b4;
+            --accent-light: #f0c8c8;
+            --border: #e8d0d0;
+            --hero-overlay: rgba(253, 245, 245, 0.1);
+            --button-bg: #e8b4b4;
+            --button-text: #5a4a4a;
+            --hero-image: url('https://images.unsplash.com/photo-1709906069587-19efdcaac867?q=80&w=1365&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        /* ================= BASE STYLES ================= */
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.5s ease-in-out;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ================= NAVIGATION ================= */
+        .nav-transparent {
+            padding: 20px 0;
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo h5 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .logo h5::after {
+            content: "Ø";
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle-nav {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            position: relative;
+        }
+
+        .theme-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .theme-btn.active {
+            transform: scale(1.3);
+            border: 2px solid var(--text-primary);
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .theme-btn.old-money {
+            background-color: #8b7355;
+        }
+
+        .theme-btn.goth {
+            background-color: #39ff14;
+        }
+
+        .theme-btn.cottagecore {
+            background-color: #e8b4b4;
+        }
+
+        .theme-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.3s ease;
+            background: var(--bg-secondary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        .theme-btn:hover .theme-label {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-2px);
+        }
+
+        /* User Actions */
+        .user-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-icon {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-icon:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: var(--button-text);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* ================= CART SECTION ================= */
+        .cart-section {
+            padding: 80px 0;
+            flex: 1;
+            background-color: var(--bg-primary);
+        }
+
+        .page-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .cart-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .cart-items {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .cart-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            padding: 20px 0;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-product {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .cart-item-product img {
+            width: 100px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .cart-item-details h4 {
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-size: 18px;
+        }
+
+        .cart-item-details p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            padding: 0;
+            font-size: 14px;
+            margin-top: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .remove-item:hover {
+            text-decoration: underline;
+            color: var(--accent-light);
+        }
+
+        .cart-item-price,
+        .cart-item-total {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border);
+            background: var(--bg-primary);
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: var(--accent);
+            color: var(--button-text);
+        }
+
+        .quantity-input {
+            width: 60px;
+            height: 32px;
+            text-align: center;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .empty-cart-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-cart h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .empty-cart p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .continue-shopping {
+            background: var(--accent);
+            color: var(--button-text);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .continue-shopping:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+
+        /* Cart Summary */
+        .cart-summary {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .cart-summary h3 {
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            font-size: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        .summary-row.total {
+            border-top: 1px solid var(--border);
+            padding-top: 15px;
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .promo-code {
+            display: flex;
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        .promo-code input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .promo-code button {
+            padding: 12px 20px;
+            background: var(--accent);
+            color: var(--button-text);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .promo-code button:hover {
+            background: var(--accent-light);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent);
+            color: var(--button-text);
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .checkout-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .checkout-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .checkout-btn:disabled:hover {
+            background: var(--accent);
+            transform: none;
+            box-shadow: none;
+        }
+
+        .payment-methods {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
+        }
+
+        .payment-methods p {
+            margin-bottom: 10px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .payment-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 24px;
+        }
+
+        /* ================= FOOTER ================= */
+        .footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            transition: all 0.5s ease;
+            background: var(--bg-primary);
+            margin-top: auto;
+        }
+
+        .footer-layout {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+            color: var(--text-primary);
+        }
+
+        .footer-brand::after {
+            content: "Ø";
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-social a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--accent);
+        }
+
+        .footer-social a:hover::after {
+            width: 100%;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            transition: all 0.5s ease;
+            color: var(--text-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 14px;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            .cart-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-header,
+            .cart-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .cart-item-product {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .footer-layout {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .footer-right {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cart-section {
+                padding: 40px 0;
+            }
+            
+            .cart-items,
+            .cart-summary {
+                padding: 20px;
+            }
+            
+            .promo-code {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= NAVIGATION ================= -->
+    <nav class="nav-transparent">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <h5>SER</h5>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#explore">Explore</a></li>
+                <li><a href="index.html#collections">Collections</a></li>
+                <li><a href="index.html#social">Social</a></li>
+                <li><a href="cart.html" class="active">Cart</a></li>
+            </ul>
+
+            <!-- Theme Toggle -->
+            <div class="theme-toggle-nav">
+                <div class="theme-btn old-money active" data-theme="old-money">
+                    <span class="theme-label">Old Money</span>
+                </div>
+                <div class="theme-btn goth" data-theme="goth">
+                    <span class="theme-label">Goth</span>
+                </div>
+                <div class="theme-btn cottagecore" data-theme="cottagecore">
+                    <span class="theme-label">Cottagecore</span>
+                </div>
+            </div>
+
+            <!-- User Actions -->
+            <div class="user-actions">
+                <a href="login.html" class="nav-icon" id="user-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </a>
+                
+                <a href="cart.html" class="nav-icon" id="cart-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= CART SECTION ================= -->
+    <section class="cart-section">
+        <div class="container">
+            <h1 class="page-title">Your Shopping Cart</h1>
+            
+            <div class="cart-container">
+                <div class="cart-items" id="cart-items-container">
+                    <!-- Cart items will be loaded here -->
+                </div>
+                
+                <div class="cart-summary">
+                    <h3>Order Summary</h3>
+                    
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="cart-subtotal">₹0</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="cart-shipping">₹199</span>
+                    </div>
+                    
+                    <div class="summary-row">
+                        <span>Tax</span>
+                        <span id="cart-tax">₹0</span>
+                    </div>
+                    
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="cart-total">₹0</span>
+                    </div>
+                    
+                    <div class="promo-code">
+                        <input type="text" id="promo-code" placeholder="Enter promo code">
+                        <button id="apply-promo">Apply</button>
+                    </div>
+                    
+                    <a href="checkout.html" class="checkout-btn" id="checkout-button">
+                        Proceed to Checkout
+                    </a>
+                    
+                    <div class="payment-methods">
+                        <p>We accept:</p>
+                        <div class="payment-icons">
+                            <span>💳</span>
+                            <span>📱</span>
+                            <span>🏦</span>
+                            <span>🛡️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container footer-layout">
+            <div class="footer-left">
+                <h3 class="footer-brand">SER</h3>
+                <div class="footer-social">
+                    <a href="https://instagram.com" target="_blank">IG</a>
+                    <a href="https://twitter.com" target="_blank">TW</a>
+                    <a href="https://youtube.com" target="_blank">YT</a>
+                </div>
+            </div>
+
+            <div class="footer-right">
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#products">New Arrivals</a></li>
+                        <li><a href="index.html#explore">Men</a></li>
+                        <li><a href="index.html#explore">Women</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@sero.com">Contact</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Account</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">Sign Up</a></li>
+                        <li><a href="cart.html">My Cart</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product Database (same as main page)
+        const products = {
+            'old-money': {
+                'new': [
+                    { id: 'cashmere-overcoat', name: 'Cashmere Overcoat', price: 24999, image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', sizes: ['S', 'M', 'L', 'XL'] },
+                    { id: 'silk-blouse', name: 'Silk Blouse', price: 8999, image: 'https://images.unsplash.com/photo-1593030103066-0093718efeb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', sizes: ['XS', 'S', 'M', 'L'] },
+                    { id: 'leather-boots', name: 'Leather Ankle Boots', price: 14499, image: 'https://images.unsplash.com/photo-1542280756-74b2f55e73ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', sizes: ['EU 36', 'EU 37', 'EU 38', 'EU 39', 'EU 40', 'EU 41', 'EU 42'] }
+                ]
+            },
+            'goth': {
+                'new': [
+                    { id: 'vinyl-jacket', name: 'Black Vinyl Jacket', price: 18999, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', sizes: ['S', 'M', 'L', 'XL'] },
+                    { id: 'spike-choker', name: 'Spiked Choker Necklace', price: 3999, image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', sizes: ['One Size'] }
+                ]
+            },
+            'cottagecore': {
+                'new': [
+                    { id: 'floral-dress', name: 'Floral Maxi Dress', price: 9999, image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', sizes: ['XS', 'S', 'M', 'L'] },
+                    { id: 'straw-hat', name: 'Straw Sun Hat', price: 4499, image: 'https://images.unsplash.com/photo-1534215754734-18e55d13e346?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', sizes: ['One Size'] }
+                ]
+            }
+        };
+
+        // Cart Management System
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            
+            // Initialize cart from localStorage
+            let cart = JSON.parse(localStorage.getItem('sero_cart')) || [];
+            
+            // Update cart count
+            function updateCartCount() {
+                const count = cart.reduce(function(total, item) {
+                    return total + item.quantity;
+                }, 0);
+                const cartCount = document.querySelector('.cart-count');
+                if (cartCount) {
+                    cartCount.textContent = count;
+                }
+            }
+            
+            // Update cart display
+            function updateCartDisplay() {
+                const cartItemsContainer = document.getElementById('cart-items-container');
+                const cartSubtotal = document.getElementById('cart-subtotal');
+                const cartTax = document.getElementById('cart-tax');
+                const cartTotal = document.getElementById('cart-total');
+                const checkoutButton = document.getElementById('checkout-button');
+                
+                if (cart.length === 0) {
+                    // Show empty cart message
+                    cartItemsContainer.innerHTML = `
+                        <div class="empty-cart">
+                            <div class="empty-cart-icon">🛒</div>
+                            <h3>Your cart is empty</h3>
+                            <p>Add some items to get started!</p>
+                            <a href="index.html" class="continue-shopping">Continue Shopping</a>
+                        </div>
+                    `;
+                    
+                    cartSubtotal.textContent = '₹0';
+                    cartTax.textContent = '₹0';
+                    cartTotal.textContent = '₹0';
+                    checkoutButton.disabled = true;
+                    checkoutButton.innerHTML = 'Cart is Empty';
+                    return;
+                }
+                
+                // Calculate totals
+                let subtotal = 0;
+                
+                // Generate cart items HTML
+                let cartItemsHTML = `
+                    <div class="cart-header">
+                        <h3>Product</h3>
+                        <h3>Price</h3>
+                        <h3>Quantity</h3>
+                        <h3>Total</h3>
+                    </div>
+                `;
+                
+                cart.forEach(function(item, index) {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+                    
+                    cartItemsHTML += `
+                        <div class="cart-item" data-index="${index}">
+                            <div class="cart-item-product">
+                                <img src="${item.image}" alt="${item.name}">
+                                <div class="cart-item-details">
+                                    <h4>${item.name}</h4>
+                                    <p>Size: ${item.size}</p>
+                                    <p>Color: ${item.color || 'Default'}</p>
+                                    <button class="remove-item" data-index="${index}">Remove</button>
+                                </div>
+                            </div>
+                            
+                            <div class="cart-item-price">₹${item.price.toLocaleString()}</div>
+                            
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn minus" data-index="${index}">-</button>
+                                <input type="number" value="${item.quantity}" min="1" class="quantity-input" data-index="${index}">
+                                <button class="quantity-btn plus" data-index="${index}">+</button>
+                            </div>
+                            
+                            <div class="cart-item-total">₹${itemTotal.toLocaleString()}</div>
+                        </div>
+                    `;
+                });
+                
+                cartItemsContainer.innerHTML = cartItemsHTML;
+                
+                // Calculate tax (18% of subtotal)
+                const tax = Math.round(subtotal * 0.18);
+                const shipping = 199;
+                const total = subtotal + tax + shipping;
+                
+                // Update summary
+                cartSubtotal.textContent = '₹' + subtotal.toLocaleString();
+                cartTax.textContent = '₹' + tax.toLocaleString();
+                cartTotal.textContent = '₹' + total.toLocaleString();
+                
+                // Enable checkout button
+                checkoutButton.disabled = false;
+                checkoutButton.innerHTML = 'Proceed to Checkout';
+                
+                // Update cart count
+                updateCartCount();
+                
+                // Attach event listeners to cart items
+                attachCartEventListeners();
+            }
+            
+            // Attach event listeners to cart items
+            function attachCartEventListeners() {
+                // Remove item buttons
+                document.querySelectorAll('.remove-item').forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        removeFromCart(index);
+                    });
+                });
+                
+                // Quantity minus buttons
+                document.querySelectorAll('.quantity-btn.minus').forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        if (cart[index].quantity > 1) {
+                            cart[index].quantity--;
+                            saveCart();
+                            updateCartDisplay();
+                        }
+                    });
+                });
+                
+                // Quantity plus buttons
+                document.querySelectorAll('.quantity-btn.plus').forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        cart[index].quantity++;
+                        saveCart();
+                        updateCartDisplay();
+                    });
+                });
+                
+                // Quantity input changes
+                document.querySelectorAll('.quantity-input').forEach(function(input) {
+                    input.addEventListener('change', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        const newQuantity = parseInt(this.value) || 1;
+                        cart[index].quantity = Math.max(1, newQuantity);
+                        saveCart();
+                        updateCartDisplay();
+                    });
+                });
+            }
+            
+            // Remove item from cart
+            function removeFromCart(index) {
+                if (confirm('Remove this item from cart?')) {
+                    cart.splice(index, 1);
+                    saveCart();
+                    updateCartDisplay();
+                }
+            }
+            
+            // Save cart to localStorage
+            function saveCart() {
+                localStorage.setItem('sero_cart', JSON.stringify(cart));
+                updateCartCount();
+            }
+            
+            // Initialize cart display
+            updateCartDisplay();
+            
+            // Theme button click handler
+            themeButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    
+                    // Add transition effect to body
+                    document.body.style.opacity = '0.8';
+                    
+                    setTimeout(function() {
+                        // Update data-theme attribute on html element
+                        document.documentElement.setAttribute('data-theme', theme);
+                        
+                        // Update active state on theme buttons
+                        themeButtons.forEach(function(btn) {
+                            btn.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                        
+                        // Restore body opacity
+                        document.body.style.opacity = '1';
+                    }.bind(this), 300);
+                });
+            });
+            
+            // Promo code functionality
+            const promoCodeInput = document.getElementById('promo-code');
+            const applyPromoButton = document.getElementById('apply-promo');
+            
+            if (applyPromoButton) {
+                applyPromoButton.addEventListener('click', function() {
+                    const promoCode = promoCodeInput.value.trim().toUpperCase();
+                    
+                    if (promoCode === 'SERO10') {
+                        alert('Promo code applied! You got 10% off.');
+                        // In a real app, you would apply discount here
+                    } else if (promoCode === '') {
+                        alert('Please enter a promo code.');
+                    } else {
+                        alert('Invalid promo code. Try "SERO10" for 10% off.');
+                    }
+                });
+            }
+            
+            // Check if user is logged in
+            const userEmail = localStorage.getItem('sero_user_email');
+            if (!userEmail && window.location.pathname.includes('cart.html')) {
+                // Not logged in, but can still view cart
+                // In a real app, you might want to redirect to login
+            }
+        });
+    </script>
+</body>
+</html>

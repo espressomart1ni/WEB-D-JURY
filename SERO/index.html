@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="old-money">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERØ - Start. Engage. Relate. Own.</title>
+    <style>
+        /* ================= CSS RESET ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* ================= VARIABLES ================= */
+        :root {
+            /* Old Money Theme (Default) */
+            --bg-primary: #f8f7f2;
+            --bg-secondary: #f0eee4;
+            --text-primary: #2c2c2c;
+            --text-secondary: #5a5a5a;
+            --accent: #8b7355;
+            --accent-light: #a89176;
+            --border: #d4d0c5;
+            --hero-overlay: rgba(248, 247, 242, 0.1);
+            --button-bg: #8b7355;
+            --button-text: #ffffff;
+            --hero-image: url('https://plus.unsplash.com/premium_photo-1727895532114-540181abb36f?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        [data-theme="goth"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent: #39ff14;
+            --accent-light: #6aff4d;
+            --border: #333333;
+            --hero-overlay: rgba(10, 10, 10, 0.1);
+            --button-bg: #39ff14;
+            --button-text: #000000;
+            --hero-image: url('https://images.unsplash.com/photo-1644501988161-4a3175a1bb59?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        [data-theme="cottagecore"] {
+            --bg-primary: #fdf5f5;
+            --bg-secondary: #f9ecec;
+            --text-primary: #5a4a4a;
+            --text-secondary: #8a7a7a;
+            --accent: #e8b4b4;
+            --accent-light: #f0c8c8;
+            --border: #e8d0d0;
+            --hero-overlay: rgba(253, 245, 245, 0.1);
+            --button-bg: #e8b4b4;
+            --button-text: #5a4a4a;
+            --hero-image: url('https://images.unsplash.com/photo-1709906069587-19efdcaac867?q=80&w=1365&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        /* ================= BASE STYLES ================= */
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.5s ease-in-out;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ================= HERO SECTION ================= */
+        .hero-full {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: var(--hero-image);
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            transition: all 1s ease-in-out;
+            transform: scale(1);
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.3) 0%,
+                rgba(0,0,0,0.2) 50%,
+                rgba(0,0,0,0.3) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--hero-overlay);
+            z-index: -1;
+            transition: all 0.5s ease;
+        }
+
+        /* ================= NAVIGATION ================= */
+        .nav-transparent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo h5 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .logo h5::after {
+            content: "Ø";
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* Theme Toggle in Navigation */
+        .theme-toggle-nav {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            position: relative;
+        }
+
+        .theme-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .theme-btn.active {
+            transform: scale(1.3);
+            border: 2px solid var(--text-primary);
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .theme-btn.old-money {
+            background-color: #8b7355;
+        }
+
+        .theme-btn.goth {
+            background-color: #39ff14;
+        }
+
+        .theme-btn.cottagecore {
+            background-color: #e8b4b4;
+        }
+
+        .theme-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.3s ease;
+            background: var(--bg-secondary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            pointer-events: none;
+            text-shadow: none;
+        }
+
+        .theme-btn:hover .theme-label {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-2px);
+        }
+
+        /* User Actions in Navigation */
+        .user-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-icon {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-icon:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: var(--button-text);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* User Dropdown */
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px 0;
+            min-width: 180px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-icon:hover .user-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .user-dropdown a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .user-dropdown a:hover {
+            background: var(--bg-secondary);
+            color: var(--accent);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 10px 0;
+        }
+
+        /* Hero Center Content */
+        .hero-center {
+            text-align: center;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-logo {
+            font-size: 120px;
+            font-weight: 700;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            transition: all 0.5s ease;
+        }
+
+        .hero-logo::after {
+            content: "Ø";
+        }
+
+        .hero-tagline {
+            font-size: 18px;
+            font-weight: 400;
+            color: #ffffff;
+            transition: all 0.5s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* ================= PRODUCT CARDS WITH ADD TO CART ================= */
+        .add-to-cart-btn {
+            background: var(--accent);
+            color: var(--button-text);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .product-card:hover .add-to-cart-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* ================= EXPLORE SECTION ================= */
+        .explore-section {
+            padding: 100px 0;
+            background-color: var(--bg-secondary);
+            transition: all 0.5s ease;
+        }
+
+        .explore-layout {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .explore-content {
+            flex: 1;
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        .explore-content h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+            color: var(--text-primary);
+        }
+
+        .explore-content h2::after {
+            content: "Ø";
+        }
+
+        .explore-content p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            transition: all 0.5s ease;
+        }
+
+        .category-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .category-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            color: var(--button-text);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .category-btn.active::before, .category-btn:hover::before {
+            left: 0;
+        }
+
+        .explore-image {
+            flex: 1;
+            height: 400px;
+            background-color: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            animation: fadeInRight 0.8s ease-out;
+        }
+
+        .explore-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .explore-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ================= PRODUCTS SECTION ================= */
+        .products-section {
+            padding: 100px 0;
+            transition: all 0.5s ease;
+        }
+
+        .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 60px;
+            transition: all 0.5s ease;
+            color: var(--text-primary);
+        }
+
+        .products-grid-compact {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border);
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .product-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .product-large {
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .product-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .product-small {
+            height: 285px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 70%;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            transition: all 0.5s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.03);
+        }
+
+        .product-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+            color: var(--text-primary);
+        }
+
+        .product-size {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+            color: var(--accent);
+        }
+
+        /* ================= FEATURED COLLECTIONS ================= */
+        .collections-section {
+            padding: 100px 0;
+            background-color: var(--bg-secondary);
+            transition: all 0.5s ease;
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .collection-card {
+            background-color: var(--bg-primary);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            border: 1px solid var(--border);
+        }
+
+        .collection-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 0%, var(--accent) 200%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .collection-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .collection-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .collection-card:hover .collection-image {
+            transform: scale(1.05);
+        }
+
+        .collection-info {
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .collection-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            transition: all 0.5s ease;
+            color: var(--text-primary);
+        }
+
+        .collection-desc {
+            color: var(--text-secondary);
+            font-size: 14px;
+            transition: all 0.5s ease;
+        }
+
+        /* ================= CATEGORY PAGE ================= */
+        .category-page {
+            display: none;
+            padding: 100px 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .category-title {
+            font-size: 42px;
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+            color: var(--text-primary);
+        }
+
+        .category-products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .back-button {
+            background: var(--accent);
+            color: var(--button-text);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* ================= PRODUCT DETAIL PAGE ================= */
+        .product-detail-page {
+            display: none;
+            padding: 100px 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .product-detail-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .product-detail-image {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .product-detail-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-detail-image:hover img {
+            transform: scale(1.02);
+        }
+
+        .product-detail-info h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+            color: var(--text-primary);
+        }
+
+        .product-detail-price {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+            color: var(--accent);
+        }
+
+        .product-detail-desc {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.8;
+            transition: all 0.5s ease;
+        }
+
+        .size-selector {
+            margin-bottom: 30px;
+        }
+
+        .size-selector h3 {
+            margin-bottom: 15px;
+            transition: all 0.5s ease;
+            color: var(--text-primary);
+        }
+
+        .size-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .size-option {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        .size-option.active, .size-option:hover {
+            background: var(--accent);
+            color: var(--button-text);
+            transform: scale(1.1);
+        }
+
+        .add-to-cart {
+            background: var(--accent);
+            color: var(--button-text);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .add-to-cart::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transition: left 0.4s ease;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .add-to-cart:hover::before {
+            left: 100%;
+        }
+
+        /* ================= SOCIAL SECTION ================= */
+        .social-section {
+            padding: 100px 0;
+            transition: all 0.5s ease;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .social-card {
+            background-color: var(--bg-secondary);
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .social-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .social-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .social-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+            color: var(--text-primary);
+        }
+
+        .social-card p {
+            color: var(--text-secondary);
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ================= FOOTER ================= */
+        .footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            transition: all 0.5s ease;
+        }
+
+        .footer-layout {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+            color: var(--text-primary);
+        }
+
+        .footer-brand::after {
+            content: "Ø";
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-social a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--accent);
+        }
+
+        .footer-social a:hover::after {
+            width: 100%;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            transition: all 0.5s ease;
+            color: var(--text-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ================= ANIMATIONS ================= */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* ================= RESPONSIVE STYLES ================= */
+        @media (max-width: 768px) {
+            .hero-logo {
+                font-size: 80px;
+            }
+            
+            .explore-layout {
+                flex-direction: column;
+            }
+            
+            .products-grid-compact {
+                grid-template-columns: 1fr;
+            }
+            
+            .collections-grid, .category-products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-layout {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .footer-right {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .product-detail-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .theme-toggle-nav {
+                display: none;
+            }
+            
+            .user-actions {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= HERO SECTION ================= -->
+    <header class="hero-full">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+
+        <!-- Transparent Navigation -->
+        <nav class="nav-transparent">
+            <div class="nav-container">
+                <div class="logo">
+                    <a href="index.html">
+                        <h5>SER</h5>
+                    </a>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="#" class="active home-link">Home</a></li>
+                    <li><a href="#explore" class="explore-link">Explore</a></li>
+                    <li><a href="#collections" class="collections-link">Collections</a></li>
+                    <li><a href="#social" class="social-link">Social</a></li>
+                </ul>
+
+                <!-- Theme Toggle & User Actions -->
+                <div class="theme-toggle-nav">
+                    <div class="theme-btn old-money active" data-theme="old-money">
+                        <span class="theme-label">Old Money</span>
+                    </div>
+                    <div class="theme-btn goth" data-theme="goth">
+                        <span class="theme-label">Goth</span>
+                    </div>
+                    <div class="theme-btn cottagecore" data-theme="cottagecore">
+                        <span class="theme-label">Cottagecore</span>
+                    </div>
+                </div>
+
+                <!-- User Actions -->
+                <div class="user-actions">
+                    <!-- User Account Icon with Dropdown -->
+                    <div class="nav-icon" id="user-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                        <div class="user-dropdown" id="user-dropdown">
+                            <a href="login.html">Login</a>
+                            <a href="signup.html">Sign Up</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#">My Orders</a>
+                            <a href="#">Wishlist</a>
+                            <a href="#">Settings</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Cart Icon with Counter -->
+                    <a href="cart.html" class="nav-icon" id="cart-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Center Content -->
+        <div class="hero-center">
+            <h1 class="hero-logo">SER</h1>
+            <p class="hero-tagline">Start. Engage. Relate. Own.</p>
+        </div>
+    </header>
+
+    <!-- ================= EXPLORE SECTIONS ================= -->
+    <section id="explore" class="explore-section">
+        <div class="container explore-layout">
+            <div class="explore-content">
+                <h2>Explore SER</h2>
+                <p>Discover timeless designs made with contemporary craftsmanship.</p>
+                <div class="category-buttons">
+                    <button class="category-btn active" data-category="new">New</button>
+                    <button class="category-btn" data-category="women">Women</button>
+                    <button class="category-btn" data-category="men">Men</button>
+                </div>
+            </div>
+
+            <div class="explore-image">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Fashion Collection">
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PRODUCTS SECTION ================= -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+
+            <div class="products-grid-compact">
+                <!-- LEFT LARGE PRODUCT - Investment Piece -->
+                <div class="product-card product-large" data-product="cashmere-overcoat">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Cashmere Overcoat" class="product-image">
+                    <h3 class="product-name">Cashmere Overcoat</h3>
+                    <p class="product-size">Available in S — XL</p>
+                    <p class="product-price">₹9,999</p>
+                    <button class="add-to-cart-btn" data-product-id="cashmere-overcoat">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <!-- RIGHT STACKED PRODUCTS -->
+                <div class="product-stack">
+                    <!-- Core Premium Piece -->
+                    <div class="product-card product-small" data-product="silver-necklace">
+                        <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Silver Necklace" class="product-image">
+                        <h3 class="product-name">Silver Statement Necklace</h3>
+                        <p class="product-size">One Size</p>
+                        <p class="product-price">₹6,499</p>
+                        <button class="add-to-cart-btn" data-product-id="silver-necklace">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- Investment Piece -->
+                    <div class="product-card product-small" data-product="leather-boots">
+                        <img src="https://images.unsplash.com/photo-1542280756-74b2f55e73ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Leather Boots" class="product-image">
+                        <h3 class="product-name">Leather Ankle Boots</h3>
+                        <p class="product-size">Available in EU 36-42</p>
+                        <p class="product-price">₹8,499</p>
+                        <button class="add-to-cart-btn" data-product-id="leather-boots">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FEATURED COLLECTIONS ================= -->
+    <section id="collections" class="collections-section">
+        <div class="container">
+            <h2 class="section-title">Featured Collections</h2>
+
+            <div class="collections-grid">
+                <div class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Country Club" class="collection-image">
+                    <div class="collection-info">
+                        <h3 class="collection-name">Country Club</h3>
+                        <p class="collection-desc">Sophisticated leisure wear for the modern gentleman.</p>
+                    </div>
+                </div>
+
+                <div class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Boardroom" class="collection-image">
+                    <div class="collection-info">
+                        <h3 class="collection-name">Boardroom</h3>
+                        <p class="collection-desc">Executive wear for power and presence.</p>
+                    </div>
+                </div>
+
+                <div class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Evening Soiree" class="collection-image">
+                    <div class="collection-info">
+                        <h3 class="collection-name">Evening Soiree</h3>
+                        <p class="collection-desc">Elegant pieces for formal occasions and galas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= CATEGORY PAGES ================= -->
+    <section id="category-page" class="category-page">
+        <div class="container">
+            <button class="back-button">← Back to Home</button>
+            <div class="category-header">
+                <h2 class="category-title">Women's Collection</h2>
+                <p>Discover our curated selection of women's fashion</p>
+            </div>
+            <div class="category-products-grid">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= PRODUCT DETAIL PAGE ================= -->
+    <section id="product-detail-page" class="product-detail-page">
+        <div class="container">
+            <button class="back-button">← Back to Products</button>
+            <div class="product-detail-layout">
+                <div class="product-detail-image">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Product Image" id="detail-product-image">
+                </div>
+                <div class="product-detail-info">
+                    <h1 id="detail-product-name">Cashmere Overcoat</h1>
+                    <p class="product-detail-price" id="detail-product-price">₹9,999</p>
+                    <p class="product-detail-desc" id="detail-product-desc">Luxurious cashmere overcoat crafted from the finest materials. Perfect for formal occasions and chilly evenings.</p>
+                    
+                    <div class="size-selector">
+                        <h3>Select Size</h3>
+                        <div class="size-options">
+                            <div class="size-option active">S</div>
+                            <div class="size-option">M</div>
+                            <div class="size-option">L</div>
+                            <div class="size-option">XL</div>
+                        </div>
+                    </div>
+                    
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SOCIAL SECTION ================= -->
+    <section id="social" class="social-section">
+        <div class="container">
+            <h2 class="section-title">Social</h2>
+
+            <div class="social-grid">
+                <div class="social-card">
+                    <div class="social-icon">📸</div>
+                    <h3>Instagram</h3>
+                    <p>Follow our latest looks and behind-the-scenes updates.</p>
+                </div>
+
+                <div class="social-card">
+                    <div class="social-icon">🐦</div>
+                    <h3>Twitter</h3>
+                    <p>Join the conversation and stay updated with our latest news.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container footer-layout">
+            <div class="footer-left">
+                <h3 class="footer-brand">SER</h3>
+                <div class="footer-social">
+                    <a href="https://instagram.com" target="_blank">IG</a>
+                    <a href="https://twitter.com" target="_blank">TW</a>
+                    <a href="https://youtube.com" target="_blank">YT</a>
+                </div>
+            </div>
+
+            <div class="footer-right">
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="#products">New Arrivals</a></li>
+                        <li><a href="#" data-category="men">Men</a></li>
+                        <li><a href="#" data-category="women">Women</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@sero.com">Contact</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Returns</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Account</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">Sign Up</a></li>
+                        <li><a href="cart.html">My Cart</a></li>
+                        <li><a href="checkout.html">Checkout</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product Database with updated pricing
+        const products = {
+            'old-money': {
+                'new': [
+                    // Investment pieces / limited editions (₹7,999–9,999)
+                    { id: 'cashmere-overcoat', name: 'Cashmere Overcoat', price: 9999, image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'outerwear', sizes: ['S', 'M', 'L', 'XL'], description: 'Luxurious cashmere overcoat crafted from the finest materials. Perfect for formal occasions and chilly evenings.' },
+                    
+                    // Core premium pieces (₹2,999–6,999)
+                    { id: 'silk-blouse', name: 'Silk Blouse', price: 5999, image: 'https://images.unsplash.com/photo-1593030103066-0093718efeb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'tops', sizes: ['XS', 'S', 'M', 'L'], description: 'Elegant silk blouse with delicate details. A timeless addition to any sophisticated wardrobe.' },
+                    { id: 'wool-trousers', name: 'Wool Trousers', price: 6999, image: 'https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'bottoms', sizes: ['S', 'M', 'L'], description: 'Tailored wool trousers with a perfect fit. Ideal for both professional and casual settings.' },
+                    
+                    // Investment pieces / limited editions (₹7,999–9,999)
+                    { id: 'leather-bag', name: 'Leather Tote Bag', price: 8999, image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'accessories', sizes: ['One Size'], description: 'Premium leather tote bag with ample space and sophisticated design.' },
+                    
+                    // Core premium pieces (₹2,999–6,999)
+                    { id: 'pearl-earrings', name: 'Pearl Drop Earrings', price: 6499, image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'jewelry', sizes: ['One Size'], description: 'Elegant pearl drop earrings that add a touch of sophistication to any outfit.' },
+                    
+                    // Investment pieces / limited editions (₹7,999–9,999)
+                    { id: 'leather-boots', name: 'Leather Ankle Boots', price: 8499, image: 'https://images.unsplash.com/photo-1542280756-74b2f55e73ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'shoes', sizes: ['EU 36', 'EU 37', 'EU 38', 'EU 39', 'EU 40', 'EU 41', 'EU 42'], description: 'Classic leather ankle boots with superior craftsmanship and comfort.' }
+                ],
+                'women': [
+                    // Core premium pieces (₹2,999–6,999)
+                    { id: 'silk-blouse', name: 'Silk Blouse', price: 5999, image: 'https://images.unsplash.com/photo-1593030103066-0093718efeb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'tops', sizes: ['XS', 'S', 'M', 'L'], description: 'Elegant silk blouse with delicate details. A timeless addition to any sophisticated wardrobe.' },
+                    { id: 'wool-trousers', name: 'Wool Trousers', price: 6999, image: 'https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'bottoms', sizes: ['S', 'M', 'L'], description: 'Tailored wool trousers with a perfect fit. Ideal for both professional and casual settings.' },
+                    { id: 'pearl-earrings', name: 'Pearl Drop Earrings', price: 6499, image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'jewelry', sizes: ['One Size'], description: 'Elegant pearl drop earrings that add a touch of sophistication to any outfit.' }
+                ],
+                'men': [
+                    // Investment pieces / limited editions (₹7,999–9,999)
+                    { id: 'cashmere-overcoat', name: 'Cashmere Overcoat', price: 9999, image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'outerwear', sizes: ['S', 'M', 'L', 'XL'], description: 'Luxurious cashmere overcoat crafted from the finest materials. Perfect for formal occasions and chilly evenings.' },
+                    
+                    // Investment pieces / limited editions (₹7,999–9,999)
+                    { id: 'leather-boots', name: 'Leather Ankle Boots', price: 8499, image: 'https://images.unsplash.com/photo-1542280756-74b2f55e73ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'shoes', sizes: ['EU 36', 'EU 37', 'EU 38', 'EU 39', 'EU 40', 'EU 41', 'EU 42'], description: 'Classic leather ankle boots with superior craftsmanship and comfort.' }
+                ]
+            },
+            'goth': {
+                'new': [
+                    // Investment pieces / limited editions (₹7,999–9,999)
+                    { id: 'vinyl-jacket', name: 'Black Vinyl Jacket', price: 8999, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'outerwear', sizes: ['S', 'M', 'L', 'XL'], description: 'Edgy black vinyl jacket with dramatic silhouette. Perfect for making a statement.' },
+                    
+                    // Core premium pieces (₹2,999–6,999)
+                    { id: 'lace-top', name: 'Gothic Lace Top', price: 3999, image: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'tops', sizes: ['XS', 'S', 'M', 'L'], description: 'Intricate lace top with gothic-inspired details. A must-have for dark aesthetics.' },
+                    
+                    // Investment pieces / limited editions (₹7,999–9,999)
+                    { id: 'platform-boots', name: 'Platform Combat Boots', price: 8799, image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'shoes', sizes: ['EU 36', 'EU 37', 'EU 38', 'EU 39', 'EU 40', 'EU 41', 'EU 42'], description: 'Chunky platform combat boots with bold hardware details.' },
+                    
+                    // Entry/Trend pieces (₹799–3,999)
+                    { id: 'spike-choker', name: 'Spiked Choker Necklace', price: 1999, image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'jewelry', sizes: ['One Size'], description: 'Dramatic spiked choker necklace for a bold gothic statement.' },
+                    
+                    // Core premium pieces (₹2,999–6,999)
+                    { id: 'velvet-dress', name: 'Velvet Maxi Dress', price: 6999, image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'dresses', sizes: ['XS', 'S', 'M', 'L'], description: 'Flowing velvet maxi dress with deep neckline and dramatic sleeves.' },
+                    
+                    // Core premium pieces (₹2,999–6,999)
+                    { id: 'silver-necklace', name: 'Silver Statement Necklace', price: 6499, image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'jewelry', sizes: ['One Size'], description: 'Ornate silver statement necklace with gothic-inspired motifs.' }
+                ],
+                'women': [
+                    // Core premium pieces (₹2,999–6,999)
+                    { id: 'lace-top', name: 'Gothic Lace Top', price: 3999, image: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'tops', sizes: ['XS', 'S', 'M', 'L'], description: 'Intricate lace top with gothic-inspired details. A must-have for dark aesthetics.' },
+                    { id: 'velvet-dress', name: 'Velvet Maxi Dress', price: 6999, image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'dresses', sizes: ['XS', 'S', 'M', 'L'], description: 'Flowing velvet maxi dress with deep neckline and dramatic sleeves.' },
+                    
+                    // Entry/Trend pieces (₹799–3,999)
+                    { id: 'spike-choker', name: 'Spiked Choker Necklace', price: 1999, image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'jewelry', sizes: ['One Size'], description: 'Dramatic spiked choker necklace for a bold gothic statement.' }
+                ],
+                'men': [
+                    // Investment pieces / limited editions (₹7,999–9,999)
+                    { id: 'vinyl-jacket', name: 'Black Vinyl Jacket', price: 8999, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'outerwear', sizes: ['S', 'M', 'L', 'XL'], description: 'Edgy black vinyl jacket with dramatic silhouette. Perfect for making a statement.' },
+                    
+                    // Investment pieces / limited editions (₹7,999–9,999)
+                    { id: 'platform-boots', name: 'Platform Combat Boots', price: 8799, image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'shoes', sizes: ['EU 36', 'EU 37', 'EU 38', 'EU 39', 'EU 40', 'EU 41', 'EU 42'], description: 'Chunky platform combat boots with bold hardware details.' }
+                ]
+            },
+            'cottagecore': {
+                'new': [
+                    // Core premium pieces (₹2,999–6,999)
+                    { id: 'floral-dress', name: 'Floral Maxi Dress', price: 6999, image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'dresses', sizes: ['XS', 'S', 'M', 'L'], description: 'Romantic floral maxi dress with delicate details and flowing silhouette.' },
+                    
+                    // Entry/Trend pieces (₹799–3,999)
+                    { id: 'straw-hat', name: 'Straw Sun Hat', price: 2999, image: 'https://images.unsplash.com/photo-1534215754734-18e55d13e346?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'accessories', sizes: ['One Size'], description: 'Charming straw sun hat with ribbon detail. Perfect for garden parties and sunny days.' },
+                    
+                    // Core premium pieces (₹2,999–6,999)
+                    { id: 'linen-blouse', name: 'Linen Blouse', price: 4999, image: 'https://images.unsplash.com/photo-1593030103066-0093718efeb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'tops', sizes: ['XS', 'S', 'M', 'L'], description: 'Breathable linen blouse with romantic puff sleeves and delicate embroidery.' },
+                    
+                    // Entry/Trend pieces (₹799–3,999)
+                    { id: 'flower-crown', name: 'Dried Flower Crown', price: 1999, image: 'https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'accessories', sizes: ['One Size'], description: 'Enchanting dried flower crown for a whimsical, romantic look.' },
+                    
+                    // Entry/Trend pieces (₹799–3,999)
+                    { id: 'lace-gloves', name: 'Vintage Lace Gloves', price: 2499, image: 'https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'accessories', sizes: ['One Size'], description: 'Delicate vintage-inspired lace gloves for a touch of old-world charm.' },
+                    
+                    // Core premium pieces (₹2,999–6,999)
+                    { id: 'mary-janes', name: 'Leather Mary Janes', price: 5999, image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'shoes', sizes: ['EU 36', 'EU 37', 'EU 38', 'EU 39', 'EU 40', 'EU 41', 'EU 42'], description: 'Classic leather Mary Janes with a comfortable low heel and strap detail.' }
+                ],
+                'women': [
+                    // Core premium pieces (₹2,999–6,999)
+                    { id: 'floral-dress', name: 'Floral Maxi Dress', price: 6999, image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'dresses', sizes: ['XS', 'S', 'M', 'L'], description: 'Romantic floral maxi dress with delicate details and flowing silhouette.' },
+                    { id: 'linen-blouse', name: 'Linen Blouse', price: 4999, image: 'https://images.unsplash.com/photo-1593030103066-0093718efeb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'tops', sizes: ['XS', 'S', 'M', 'L'], description: 'Breathable linen blouse with romantic puff sleeves and delicate embroidery.' },
+                    
+                    // Entry/Trend pieces (₹799–3,999)
+                    { id: 'flower-crown', name: 'Dried Flower Crown', price: 1999, image: 'https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'accessories', sizes: ['One Size'], description: 'Enchanting dried flower crown for a whimsical, romantic look.' }
+                ],
+                'men': [
+                    // Entry/Trend pieces (₹799–3,999)
+                    { id: 'straw-hat', name: 'Straw Sun Hat', price: 2999, image: 'https://images.unsplash.com/photo-1534215754734-18e55d13e346?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'accessories', sizes: ['One Size'], description: 'Charming straw sun hat with ribbon detail. Perfect for garden parties and sunny days.' },
+                    
+                    // Core premium pieces (₹2,999–6,999)
+                    { id: 'mary-janes', name: 'Leather Mary Janes', price: 5999, image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80', category: 'shoes', sizes: ['EU 36', 'EU 37', 'EU 38', 'EU 39', 'EU 40', 'EU 41', 'EU 42'], description: 'Classic leather Mary Janes with a comfortable low heel and strap detail.' }
+                ]
+            }
+        };
+
+        // Cart Management
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            const backButtons = document.querySelectorAll('.back-button');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let currentTheme = 'old-money';
+            let currentCategory = 'new';
+            
+            // ================= CART FUNCTIONALITY =================
+            let cart = JSON.parse(localStorage.getItem('sero_cart')) || [];
+            
+            // Update cart count
+            function updateCartCount() {
+                const count = cart.reduce(function(total, item) {
+                    return total + item.quantity;
+                }, 0);
+                const cartCount = document.querySelector('.cart-count');
+                if (cartCount) {
+                    cartCount.textContent = count;
+                }
+            }
+            
+            // Initialize cart count
+            updateCartCount();
+            
+            // Add to cart functionality
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('add-to-cart-btn') || 
+                    e.target.parentElement.classList.contains('add-to-cart-btn')) {
+                    
+                    const button = e.target.classList.contains('add-to-cart-btn') ? 
+                                 e.target : e.target.parentElement;
+                    
+                    const productId = button.getAttribute('data-product-id');
+                    if (productId) {
+                        addToCart(productId);
+                    }
+                }
+            });
+            
+            function addToCart(productId) {
+                // Find product in database
+                let product = null;
+                for (const theme in products) {
+                    for (const category in products[theme]) {
+                        const found = products[theme][category].find(function(p) {
+                            return p.id === productId;
+                        });
+                        if (found) {
+                            product = found;
+                            break;
+                        }
+                    }
+                    if (product) break;
+                }
+                
+                if (product) {
+                    // Check if already in cart
+                    const existingItem = cart.find(function(item) {
+                        return item.id === productId;
+                    });
+                    
+                    if (existingItem) {
+                        existingItem.quantity++;
+                    } else {
+                        cart.push({
+                            id: productId,
+                            name: product.name,
+                            price: product.price,
+                            image: product.image,
+                            size: product.sizes[0],
+                            quantity: 1
+                        });
+                    }
+                    
+                    // Save to localStorage
+                    localStorage.setItem('sero_cart', JSON.stringify(cart));
+                    
+                    // Update cart count
+                    updateCartCount();
+                    
+                    // Show confirmation
+                    showNotification(product.name + ' added to cart!');
+                }
+            }
+            
+            // Notification function
+            function showNotification(message) {
+                // Create notification element
+                const notification = document.createElement('div');
+                notification.className = 'notification';
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <span>${message}</span>
+                    </div>
+                `;
+                
+                // Add styles
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: var(--accent);
+                    color: var(--button-text);
+                    padding: 15px 25px;
+                    border-radius: 6px;
+                    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                    z-index: 9999;
+                    animation: slideIn 0.3s ease, slideOut 0.3s ease 2.7s;
+                    transform: translateX(100%);
+                `;
+                
+                // Add animation keyframes
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes slideIn {
+                        from { transform: translateX(100%); opacity: 0; }
+                        to { transform: translateX(0); opacity: 1; }
+                    }
+                    @keyframes slideOut {
+                        from { transform: translateX(0); opacity: 1; }
+                        to { transform: translateX(100%); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // Add to page
+                document.body.appendChild(notification);
+                
+                // Remove after animation
+                setTimeout(function() {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 3000);
+            }
+            
+            // ================= USER DROPDOWN =================
+            const userIcon = document.getElementById('user-icon');
+            const userDropdown = document.querySelector('.user-dropdown');
+            
+            // Fix: Add dropdown styles for showing
+            if (userDropdown) {
+                userDropdown.classList.add('show');
+                
+                // Toggle dropdown on user icon click
+                if (userIcon) {
+                    userIcon.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        userDropdown.classList.toggle('active');
+                    });
+                }
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!userIcon.contains(e.target) && !userDropdown.contains(e.target)) {
+                        userDropdown.classList.remove('active');
+                    }
+                });
+                
+                // Add click handlers for dropdown links
+                userDropdown.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const href = this.getAttribute('href');
+                        if (href) {
+                            window.location.href = href;
+                        }
+                    });
+                });
+            }
+            
+            // ================= CHECK USER LOGIN STATUS =================
+            function updateUserStatus() {
+                const userEmail = localStorage.getItem('sero_user_email');
+                const userIcon = document.querySelector('#user-icon svg');
+                
+                if (userEmail) {
+                    // User is logged in
+                    if (userIcon) {
+                        userIcon.style.color = 'var(--accent)';
+                    }
+
+                }
+            }
+            
+            // Check user status on page load
+            updateUserStatus();
+            
+            // ================= FOOTER CATEGORY LINKS =================
+            document.querySelectorAll('.footer-links a[data-category]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const category = this.getAttribute('data-category');
+                    showCategoryPage(category);
+                });
+            });
+            
+    
+         // ================= NAVIGATION LINKS =================
+navLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        
+        // Only prevent default for anchor links (#) that are on the current page
+        if (href && href.startsWith('#') && window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+            e.preventDefault();
+            const targetId = href.substring(1);
+            
+            if (targetId === '' || targetId === 'home') {
+                // Home link - scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                // Other sections - scroll to section
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+        // For page links (login.html, cart.html, etc.), allow normal navigation
+    });
+});
+            // ================= THEME BUTTONS =================
+            themeButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    currentTheme = theme;
+                    
+                    // Add transition effect to body
+                    document.body.style.opacity = '0.8';
+                    
+                    setTimeout(function() {
+                        // Update data-theme attribute on html element
+                        document.documentElement.setAttribute('data-theme', theme);
+                        
+                        // Update active state on theme buttons
+                        themeButtons.forEach(function(btn) {
+                            btn.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                        
+                        // Update product images based on theme
+                        updateProductImages(theme);
+                        
+                        // Update collections based on theme
+                        updateCollections(theme);
+                        
+                        // Update category page if it's visible
+                        if (document.querySelector('.category-page').style.display === 'block') {
+                            showCategoryPage(currentCategory);
+                        }
+                        
+                        // Restore body opacity
+                        document.body.style.opacity = '1';
+                    }.bind(this), 300);
+                });
+            });
+            
+            // ================= CATEGORY BUTTONS =================
+            categoryButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    currentCategory = category;
+                    
+                    categoryButtons.forEach(function(btn) {
+                        btn.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    // Show category page
+                    showCategoryPage(category);
+                });
+            });
+            
+            // ================= PRODUCT CARD CLICKS =================
+            productCards.forEach(function(card) {
+                card.addEventListener('click', function(e) {
+                    // Don't trigger if clicking on add to cart button
+                    if (!e.target.classList.contains('add-to-cart-btn') && 
+                        !e.target.parentElement.classList.contains('add-to-cart-btn')) {
+                        const productId = this.getAttribute('data-product');
+                        showProductDetail(productId);
+                    }
+                });
+            });
+            
+            // ================= BACK BUTTONS =================
+            backButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    showHomePage();
+                });
+            });
+            
+            // ================= SIZE SELECTOR =================
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('size-option')) {
+                    const sizeOptions = document.querySelectorAll('.size-option');
+                    sizeOptions.forEach(function(option) {
+                        option.classList.remove('active');
+                    });
+                    e.target.classList.add('active');
+                }
+            });
+            
+            // ================= CART ICON CLICK =================
+            const cartIcon = document.getElementById('cart-icon');
+            if (cartIcon) {
+                cartIcon.addEventListener('click', function(e) {
+                    // Let the link work normally
+                    // No prevention needed
+                });
+            }
+            
+            // ================= HELPER FUNCTIONS =================
+            function updateProductImages(theme) {
+                const productImages = document.querySelectorAll('.product-image');
+                const exploreImage = document.querySelector('.explore-image img');
+                
+                // Define image URLs for each theme
+                const imageMap = {
+                    'old-money': {
+                        'large': 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                        'small1': 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                        'small2': 'https://images.unsplash.com/photo-1542280756-74b2f55e73ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                        'explore': 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80'
+                    },
+                    'goth': {
+                        'large': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                        'small1': 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                        'small2': 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                        'explore': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80'
+                    },
+                    'cottagecore': {
+                        'large': 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                        'small1': 'https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                        'small2': 'https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                        'explore': 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80'
+                    }
+                };
+                
+                // Update product images
+                if (productImages.length >= 3) {
+                    productImages[0].src = imageMap[theme]['large'];
+                    productImages[1].src = imageMap[theme]['small1'];
+                    productImages[2].src = imageMap[theme]['small2'];
+                }
+                
+                // Update explore image
+                if (exploreImage) {
+                    exploreImage.src = imageMap[theme]['explore'];
+                }
+            }
+            
+            function updateCollections(theme) {
+                const collectionCards = document.querySelectorAll('.collection-card');
+                const collectionNames = document.querySelectorAll('.collection-name');
+                const collectionDescs = document.querySelectorAll('.collection-desc');
+                
+                // Define collection data for each theme
+                const collectionData = {
+                    'old-money': [
+                        {
+                            image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                            name: 'Country Club',
+                            desc: 'Sophisticated leisure wear for the modern gentleman.'
+                        },
+                        {
+                            image: 'https://images.unsplash.com/photo-1519457431-44ccd64a579b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                            name: 'Boardroom',
+                            desc: 'Executive wear for power and presence.'
+                        },
+                        {
+                            image: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                            name: 'Evening Soiree',
+                            desc: 'Elegant pieces for formal occasions and galas.'
+                        }
+                    ],
+                    'goth': [
+                        {
+                            image: 'https://images.unsplash.com/photo-1539109136883-68d858bcd9f7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                            name: 'Nocturnal',
+                            desc: 'Dark and dramatic pieces for the night creatures.'
+                        },
+                        {
+                            image: 'https://images.unsplash.com/photo-1519457431-44ccd64a579b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                            name: 'Costume Events',
+                            desc: 'Statement pieces for themed gatherings and parties.'
+                        },
+                        {
+                            image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                            name: 'Urban Gothic',
+                            desc: 'Modern gothic styles for city living.'
+                        }
+                    ],
+                    'cottagecore': [
+                        {
+                            image: 'https://images.unsplash.com/photo-1534215754734-18e55d13e346?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                            name: 'Outdoors',
+                            desc: 'Comfortable and charming pieces for nature adventures.'
+                        },
+                        {
+                            image: 'https://images.unsplash.com/photo-1593030103066-0093718efeb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                            name: 'House Parties',
+                            desc: 'Whimsical and romantic styles for intimate gatherings.'
+                        },
+                        {
+                            image: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+                            name: 'Garden Tea',
+                            desc: 'Delicate and floral pieces for afternoon gatherings.'
+                        }
+                    ]
+                };
+                
+                // Update collection data
+                if (collectionCards.length >= 3) {
+                    collectionCards.forEach(function(card, index) {
+                        const img = card.querySelector('.collection-image');
+                        img.src = collectionData[theme][index].image;
+                        
+                        collectionNames[index].textContent = collectionData[theme][index].name;
+                        collectionDescs[index].textContent = collectionData[theme][index].desc;
+                    });
+                }
+            }
+            
+            function showCategoryPage(category) {
+                // Hide all main sections
+                document.querySelector('.explore-section').style.display = 'none';
+                document.querySelector('.products-section').style.display = 'none';
+                document.querySelector('.collections-section').style.display = 'none';
+                document.querySelector('.social-section').style.display = 'none';
+                document.querySelector('.product-detail-page').style.display = 'none';
+                
+                // Show category page
+                const categoryPage = document.querySelector('.category-page');
+                categoryPage.style.display = 'block';
+                
+                // Update category title
+                const categoryTitle = categoryPage.querySelector('.category-title');
+                categoryTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1) + "'s Collection";
+                
+                // Get products for current theme and category
+                const categoryProducts = products[currentTheme][category];
+                
+                // Clear existing products
+                const productsGrid = categoryPage.querySelector('.category-products-grid');
+                productsGrid.innerHTML = '';
+                
+                // Add products to grid
+                categoryProducts.forEach(function(product) {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card product-small';
+                    productCard.setAttribute('data-product', product.id);
+                    
+                    productCard.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-size">${product.sizes.length > 1 ? 'Available in ' + product.sizes.join(', ') : 'One Size'}</p>
+                        <p class="product-price">₹${product.price.toLocaleString()}</p>
+                        <button class="add-to-cart-btn" data-product-id="${product.id}">
+                            Add to Cart
+                        </button>
+                    `;
+                    
+                    productCard.addEventListener('click', function(e) {
+                        if (!e.target.classList.contains('add-to-cart-btn')) {
+                            showProductDetail(product.id);
+                        }
+                    });
+                    
+                    productsGrid.appendChild(productCard);
+                });
+            }
+            
+            function showProductDetail(productId) {
+                // Hide all main sections
+                document.querySelector('.explore-section').style.display = 'none';
+                document.querySelector('.products-section').style.display = 'none';
+                document.querySelector('.collections-section').style.display = 'none';
+                document.querySelector('.social-section').style.display = 'none';
+                document.querySelector('.category-page').style.display = 'none';
+                
+                // Show product detail page
+                const productDetailPage = document.querySelector('.product-detail-page');
+                productDetailPage.style.display = 'block';
+                
+                // Find product in database
+                let product = null;
+                for (const category in products[currentTheme]) {
+                    const foundProduct = products[currentTheme][category].find(function(p) {
+                        return p.id === productId;
+                    });
+                    if (foundProduct) {
+                        product = foundProduct;
+                        break;
+                    }
+                }
+                
+                if (product) {
+                    // Update product details
+                    document.getElementById('detail-product-image').src = product.image;
+                    document.getElementById('detail-product-name').textContent = product.name;
+                    document.getElementById('detail-product-price').textContent = '₹' + product.price.toLocaleString();
+                    document.getElementById('detail-product-desc').textContent = product.description;
+                    
+                    // Update size options
+                    const sizeOptions = document.querySelector('.size-options');
+                    sizeOptions.innerHTML = '';
+                    
+                    product.sizes.forEach(function(size) {
+                        const sizeOption = document.createElement('div');
+                        sizeOption.className = 'size-option';
+                        if (size === product.sizes[0]) sizeOption.classList.add('active');
+                        sizeOption.textContent = size;
+                        sizeOptions.appendChild(sizeOption);
+                    });
+                    
+                    // Update add to cart button
+                    const addToCartBtn = document.querySelector('.product-detail-page .add-to-cart');
+                    if (addToCartBtn) {
+                        addToCartBtn.setAttribute('data-product-id', product.id);
+                        addToCartBtn.onclick = function() {
+                            addToCart(product.id);
+                        };
+                    }
+                }
+            }
+            
+            function showHomePage() {
+                // Show all main sections
+                document.querySelector('.explore-section').style.display = 'block';
+                document.querySelector('.products-section').style.display = 'block';
+                document.querySelector('.collections-section').style.display = 'block';
+                document.querySelector('.social-section').style.display = 'block';
+                
+                // Hide category and product detail pages
+                document.querySelector('.category-page').style.display = 'none';
+                document.querySelector('.product-detail-page').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

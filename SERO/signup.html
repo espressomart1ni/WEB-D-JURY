@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="old-money">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - SERØ | Elevating Everyday Fashion</title>
+    <style>
+        /* ================= CSS RESET ================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* ================= VARIABLES ================= */
+        :root {
+            --bg-primary: #f8f7f2;
+            --bg-secondary: #f0eee4;
+            --text-primary: #2c2c2c;
+            --text-secondary: #5a5a5a;
+            --accent: #8b7355;
+            --accent-light: #a89176;
+            --border: #d4d0c5;
+            --hero-overlay: rgba(248, 247, 242, 0.1);
+            --button-bg: #8b7355;
+            --button-text: #ffffff;
+            --hero-image: url('https://plus.unsplash.com/premium_photo-1727895532114-540181abb36f?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        [data-theme="goth"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --accent: #39ff14;
+            --accent-light: #6aff4d;
+            --border: #333333;
+            --hero-overlay: rgba(10, 10, 10, 0.1);
+            --button-bg: #39ff14;
+            --button-text: #000000;
+            --hero-image: url('https://images.unsplash.com/photo-1644501988161-4a3175a1bb59?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        [data-theme="cottagecore"] {
+            --bg-primary: #fdf5f5;
+            --bg-secondary: #f9ecec;
+            --text-primary: #5a4a4a;
+            --text-secondary: #8a7a7a;
+            --accent: #e8b4b4;
+            --accent-light: #f0c8c8;
+            --border: #e8d0d0;
+            --hero-overlay: rgba(253, 245, 245, 0.1);
+            --button-bg: #e8b4b4;
+            --button-text: #5a4a4a;
+            --hero-image: url('https://images.unsplash.com/photo-1709906069587-19efdcaac867?q=80&w=1365&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
+
+        /* ================= BASE STYLES ================= */
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.5s ease-in-out;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ================= NAVIGATION ================= */
+        .nav-transparent {
+            padding: 20px 0;
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo h5 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .logo h5::after {
+            content: "Ø";
+        }
+
+        .logo a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle-nav {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            position: relative;
+        }
+
+        .theme-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            position: relative;
+        }
+
+        .theme-btn.active {
+            transform: scale(1.3);
+            border: 2px solid var(--text-primary);
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .theme-btn.old-money {
+            background-color: #8b7355;
+        }
+
+        .theme-btn.goth {
+            background-color: #39ff14;
+        }
+
+        .theme-btn.cottagecore {
+            background-color: #e8b4b4;
+        }
+
+        .theme-label {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.3s ease;
+            background: var(--bg-secondary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            pointer-events: none;
+        }
+
+        .theme-btn:hover .theme-label {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-2px);
+        }
+
+        /* User Actions */
+        .user-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-icon {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-icon:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: var(--button-text);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* ================= SIGNUP SECTION ================= */
+        .auth-section {
+            padding: 80px 0;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background-color: var(--bg-primary);
+        }
+
+        .auth-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .auth-card {
+            background: var(--bg-secondary);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .auth-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .auth-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .auth-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .auth-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .auth-form input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            accent-color: var(--accent);
+        }
+
+        .terms-link {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .terms-link:hover {
+            text-decoration: underline;
+        }
+
+        .auth-button {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent);
+            color: var(--button-text);
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .auth-button:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .auth-divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .auth-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .auth-divider span {
+            background: var(--bg-secondary);
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+            font-size: 14px;
+        }
+
+        .social-auth {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .social-button {
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .social-button:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .auth-switch {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .auth-switch a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        .auth-image {
+            border-radius: 12px;
+            overflow: hidden;
+            height: 500px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .auth-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .auth-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Error and Success States */
+        .error-message {
+            color: #dc2626;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-group.error input {
+            border-color: #dc2626;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        .success-message {
+            background: #10b981;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ================= FOOTER ================= */
+        .footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            transition: all 0.5s ease;
+            background: var(--bg-primary);
+            margin-top: auto;
+        }
+
+        .footer-layout {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+            color: var(--text-primary);
+        }
+
+        .footer-brand::after {
+            content: "Ø";
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-social a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--accent);
+        }
+
+        .footer-social a:hover::after {
+            width: 100%;
+        }
+
+        .footer-right {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            transition: all 0.5s ease;
+            color: var(--text-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 14px;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            .auth-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .auth-image {
+                height: 300px;
+                order: -1;
+            }
+            
+            .auth-card {
+                padding: 30px 20px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .footer-layout {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .footer-right {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .auth-title {
+                font-size: 28px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .auth-section {
+                padding: 40px 0;
+            }
+            
+            .form-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .social-button {
+                font-size: 12px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= NAVIGATION ================= -->
+    <nav class="nav-transparent">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <h5>SER</h5>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#explore">Explore</a></li>
+                <li><a href="index.html#collections">Collections</a></li>
+                <li><a href="index.html#social">Social</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+
+            <!-- Theme Toggle -->
+            <div class="theme-toggle-nav">
+                <div class="theme-btn old-money active" data-theme="old-money">
+                    <span class="theme-label">Old Money</span>
+                </div>
+                <div class="theme-btn goth" data-theme="goth">
+                    <span class="theme-label">Goth</span>
+                </div>
+                <div class="theme-btn cottagecore" data-theme="cottagecore">
+                    <span class="theme-label">Cottagecore</span>
+                </div>
+            </div>
+
+            <!-- User Actions -->
+            <div class="user-actions">
+                <a href="login.html" class="nav-icon" id="user-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </a>
+                
+                <a href="cart.html" class="nav-icon" id="cart-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ================= SIGNUP SECTION ================= -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <!-- Success Message -->
+                    <div class="success-message" id="success-message">
+                        Account created successfully! Redirecting...
+                    </div>
+                    
+                    <h2 class="auth-title">Create Account</h2>
+                    <p class="auth-subtitle">Join SERØ for exclusive benefits and faster checkout</p>
+                    
+                    <form class="auth-form" id="signup-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+                                <input type="text" id="first-name" name="first-name" required 
+                                       placeholder="John">
+                                <div class="error-message" id="first-name-error">
+                                    Please enter your first name
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+                                <input type="text" id="last-name" name="last-name" required 
+                                       placeholder="Doe">
+                                <div class="error-message" id="last-name-error">
+                                    Please enter your last name
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required 
+                                   placeholder="your@email.com">
+                            <div class="error-message" id="email-error">
+                                Please enter a valid email address
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required 
+                                   placeholder="••••••••">
+                            <div class="error-message" id="password-error">
+                                Password must be at least 8 characters
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm Password</label>
+                            <input type="password" id="confirm-password" name="confirm-password" required 
+                                   placeholder="••••••••">
+                            <div class="error-message" id="confirm-password-error">
+                                Passwords do not match
+                            </div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="terms" required>
+                                <span>I agree to the <a href="#" class="terms-link">Terms & Conditions</a> and <a href="#" class="terms-link">Privacy Policy</a></span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="auth-button">Create Account</button>
+                    </form>
+                    
+                    <div class="auth-divider">
+                        <span>or sign up with</span>
+                    </div>
+                    
+                    <div class="social-auth">
+                        <button class="social-button google" id="google-signup">
+                            <svg width="20" height="20" viewBox="0 0 24 24">
+                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                            </svg>
+                            Continue with Google
+                        </button>
+                        <button class="social-button facebook" id="facebook-signup">
+                            <svg width="20" height="20" viewBox="0 0 24 24">
+                                <path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                            Continue with Facebook
+                        </button>
+                    </div>
+                    
+                    <p class="auth-switch">
+                        Already have an account? 
+                        <a href="login.html">Login here</a>
+                    </p>
+                </div>
+                
+                <div class="auth-image">
+                    <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                         alt="SERØ Fashion Signup">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer">
+        <div class="container footer-layout">
+            <div class="footer-left">
+                <h3 class="footer-brand">SER</h3>
+                <div class="footer-social">
+                    <a href="https://instagram.com" target="_blank">IG</a>
+                    <a href="https://twitter.com" target="_blank">TW</a>
+                    <a href="https://youtube.com" target="_blank">YT</a>
+                </div>
+            </div>
+
+            <div class="footer-right">
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#products">New Arrivals</a></li>
+                        <li><a href="index.html#explore">Men</a></li>
+                        <li><a href="index.html#explore">Women</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@sero.com">Contact</a></li>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Shipping</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Account</h4>
+                    <ul class="footer-links">
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="signup.html">Sign Up</a></li>
+                        <li><a href="cart.html">My Cart</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Switching Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            
+            // Initialize cart count
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('sero_cart')) || [];
+                const count = cart.reduce(function(total, item) {
+                    return total + item.quantity;
+                }, 0);
+                const cartCount = document.querySelector('.cart-count');
+                if (cartCount) {
+                    cartCount.textContent = count;
+                }
+            }
+            
+            // Initialize cart count
+            updateCartCount();
+            
+            // Theme button click handler
+            themeButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    
+                    // Add transition effect to body
+                    document.body.style.opacity = '0.8';
+                    
+                    setTimeout(function() {
+                        // Update data-theme attribute on html element
+                        document.documentElement.setAttribute('data-theme', theme);
+                        
+                        // Update active state on theme buttons
+                        themeButtons.forEach(function(btn) {
+                            btn.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                        
+                        // Restore body opacity
+                        document.body.style.opacity = '1';
+                    }.bind(this), 300);
+                });
+            });
+            
+            // Signup Form Validation
+            const signupForm = document.getElementById('signup-form');
+            if (signupForm) {
+                signupForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    let isValid = true;
+                    
+                    // First Name validation
+                    const firstName = document.getElementById('first-name');
+                    if (!firstName.value.trim()) {
+                        firstName.parentElement.classList.add('error');
+                        isValid = false;
+                    } else {
+                        firstName.parentElement.classList.remove('error');
+                    }
+                    
+                    // Last Name validation
+                    const lastName = document.getElementById('last-name');
+                    if (!lastName.value.trim()) {
+                        lastName.parentElement.classList.add('error');
+                        isValid = false;
+                    } else {
+                        lastName.parentElement.classList.remove('error');
+                    }
+                    
+                    // Email validation
+                    const email = document.getElementById('email');
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!email.value.trim() || !emailRegex.test(email.value)) {
+                        email.parentElement.classList.add('error');
+                        isValid = false;
+                    } else {
+                        email.parentElement.classList.remove('error');
+                    }
+                    
+                    // Password validation
+                    const password = document.getElementById('password');
+                    if (!password.value.trim() || password.value.length < 8) {
+                        password.parentElement.classList.add('error');
+                        isValid = false;
+                    } else {
+                        password.parentElement.classList.remove('error');
+                    }
+                    
+                    // Confirm Password validation
+                    const confirmPassword = document.getElementById('confirm-password');
+                    if (!confirmPassword.value.trim() || confirmPassword.value !== password.value) {
+                        confirmPassword.parentElement.classList.add('error');
+                        isValid = false;
+                    } else {
+                        confirmPassword.parentElement.classList.remove('error');
+                    }
+                    
+                    // Terms checkbox validation
+                    const termsCheckbox = document.querySelector('input[name="terms"]');
+                    if (!termsCheckbox.checked) {
+                        alert('Please agree to the Terms & Conditions and Privacy Policy');
+                        isValid = false;
+                    }
+                    
+                    if (isValid) {
+                        // Show success message
+                        const successMessage = document.getElementById('success-message');
+                        successMessage.style.display = 'block';
+                        
+                        // Simulate signup process
+                        setTimeout(function() {
+                            // Store user data (in real app, send to server)
+                            const userData = {
+                                firstName: firstName.value,
+                                lastName: lastName.value,
+                                email: email.value,
+                                createdAt: new Date().toISOString()
+                            };
+                            
+                            localStorage.setItem('sero_user', JSON.stringify(userData));
+                            localStorage.setItem('sero_user_email', email.value);
+                            
+                            // Redirect to home page
+                            window.location.href = 'index.html';
+                        }, 1500);
+                    }
+                });
+            }
+            
+            // Social Signup Buttons
+            const googleSignup = document.getElementById('google-signup');
+            const facebookSignup = document.getElementById('facebook-signup');
+            
+            if (googleSignup) {
+                googleSignup.addEventListener('click', function() {
+                    alert('Google signup would be implemented here. For now, please use the form above.');
+                });
+            }
+            
+            if (facebookSignup) {
+                facebookSignup.addEventListener('click', function() {
+                    alert('Facebook signup would be implemented here. For now, please use the form above.');
+                });
+            }
+            
+            // Check if user is already logged in
+            const userEmail = localStorage.getItem('sero_user_email');
+            if (userEmail && window.location.pathname.includes('signup.html')) {
+                // User is already signed up, redirect to home
+                window.location.href = 'index.html';
+            }
+            
+            // Real-time password confirmation validation
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            
+            if (passwordInput && confirmPasswordInput) {
+                confirmPasswordInput.addEventListener('input', function() {
+                    if (passwordInput.value !== confirmPasswordInput.value) {
+                        confirmPasswordInput.parentElement.classList.add('error');
+                    } else {
+                        confirmPasswordInput.parentElement.classList.remove('error');
+                    }
+                });
+                
+                passwordInput.addEventListener('input', function() {
+                    if (confirmPasswordInput.value && passwordInput.value !== confirmPasswordInput.value) {
+                        confirmPasswordInput.parentElement.classList.add('error');
+                    } else if (confirmPasswordInput.value) {
+                        confirmPasswordInput.parentElement.classList.remove('error');
+                    }
+                });
+            }
+            
+            // Terms & Conditions and Privacy Policy links
+            const termsLinks = document.querySelectorAll('.terms-link');
+            termsLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('In a real implementation, this would open the Terms & Conditions or Privacy Policy page.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
